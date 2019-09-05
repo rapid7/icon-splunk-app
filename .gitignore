@@ -1,2 +1,4 @@
 .idea/
-phantom/
+**/*.pyc
+**/.DS_Store
+*.spl
