@@ -13,11 +13,14 @@ A Rapid7 Insight cloud platform API key can be obtained
 
 For more in-depth instructions on configuring this app to work with Rapid7 InsightConnect, please see [https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
+**Notice:** By using this Splunk app you consent to sending information (events) to Rapid7 InsightConnect.
+
 For questions or comments regarding this Splunk app, please contact
 IntegrationAlliance@rapid7.com.
 
 ### Changelog
 
+* 1.1.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario
 * 1.0.0 - Initial release.
 
 ## About Rapid7
