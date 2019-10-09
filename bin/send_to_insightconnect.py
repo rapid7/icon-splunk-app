@@ -101,6 +101,7 @@ class SendToInsightConnectAlert:
         :return: None
         """
 
+        # URL should always use HTTPS as that is the only option with the Rapid7 Insight platform.
         response = requests.post(url, alert, headers={"X-Api-Key": api_key})
 
         # Documented status codes
