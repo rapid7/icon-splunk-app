@@ -20,7 +20,7 @@ IntegrationAlliance@rapid7.com.
 
 ### Changelog
 
-* 1.1.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario
+* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario
 * 1.0.0 - Initial release.
 
 ## About Rapid7
