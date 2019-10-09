@@ -65,7 +65,7 @@ class SendToInsightConnectAlert:
         except KeyError:
             raise Exception("Error: Either 'trigger URL' or 'x-api-key' was missing!")
         except ValueError:
-            raise Exception("Error: An invalid JSON string was received. String was: %s" % sys.stdin)
+            raise Exception("Error: An invalid JSON string was received!")
 
         return cls(trigger_url=trigger_url, api_key=api_key, event=j_event)
 
