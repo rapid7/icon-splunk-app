@@ -11,5 +11,5 @@ jobs:
     - name: Run a multi-line script
       shell: bash
       run: |
-        echo $(ls)
+        echo $(pwd)
         curl -X GET "https://httpbin.org/get" -H "accept: application/json"
