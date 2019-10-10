@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Run a multi-line script
+      shell: bash
+      run: |
+        make app
+        curl -X GET "https://httpbin.org/get" -H "accept: application/json"
