@@ -9,7 +9,6 @@ jobs:
     
     steps:
     - name: Run a multi-line script
-      shell: bash
       run: |
-        echo $(pwd)
+        ls -lah
         curl -X GET "https://httpbin.org/get" -H "accept: application/json"
