@@ -3,6 +3,8 @@
 import sys
 import json
 import os
+import re
+
 import logging
 import logging.handlers
 
@@ -54,12 +56,18 @@ class SendToInsightConnectAlert:
         """
 
         try:
+            # Receive Splunk event
             event = json.load(sys.stdin)
+
+            # Remove the configuration from the event - it can contain sensitive info that
+            # we don't want to send to the InsightConnect workflow
             config = event.pop("configuration")
 
+            # Pull out both the InsightConnect workflow trigger URL as well as the Insight platform API key
             trigger_url = config["trigger_url"]
             api_key = config["x-api-key"]
 
+            # Write the event back out to a JSON string
             j_event = json.dumps(event)
 
         except KeyError:
@@ -80,17 +88,40 @@ class SendToInsightConnectAlert:
             self.logger.error(s)
             raise Exception(s)
 
+        if not self._is_workflow_trigger_url_valid(trigger_url=self.trigger_url):
+            s = "Error: Invalid Rapid7 InsightConnect Workflow API trigger URL!"
+            self.logger.error(s)
+            raise Exception(s)
+
         if not self.api_key:
             s = "Error: Missing Rapid7 Insight platform API key! If you need an API key, one can be created at " \
                 "https://insight.rapid7.com/platform#/apiKeyManagement"
             self.logger.error(s)
             raise Exception(s)
 
+        # Both required inputs are present and valid, so proceed with the alert
         self.logger.info("Sending alert to Rapid7 InsightConnect!")
 
         self._send_alert(url=self.trigger_url,
                          api_key=self.api_key,
                          alert=self.event)
+
+    def _is_workflow_trigger_url_valid(self, trigger_url):
+        """
+        Checks if a Rapid7 InsightConnect workflow trigger URL is valid based on a known schema as of 10/10/19
+        :param trigger_url: Workflow trigger URL to validate
+        :return: Boolean value indicating if the URL is valid (true) or invalid (false)
+        """
+
+        # Regex pattern, matches something like:
+        # https://us.api.insight.rapid7.com/connect/v1/workflows/16b3-z81b-40b7-afc2-zf53127d3758/events/execute
+        rp = r"https:\/\/.{2}\.api\.insight\.rapid7\.com\/connect\/v\d{1}\/workflows\/[a-zA-Z0-9\-]*\/events\/execute"
+        matches = re.match(rp, trigger_url)
+
+        if matches:
+            return True
+        else:
+            return False
 
     def _send_alert(self, url, api_key, alert):
         """
@@ -101,10 +132,11 @@ class SendToInsightConnectAlert:
         :return: None
         """
 
-        # URL should always use HTTPS as that is the only option with the Rapid7 Insight platform.
+        # URL will always be HTTPS as that is the only option with the Rapid7 Insight platform
+        # and regex validation is performed to ensure the URL schema is proper.
         response = requests.post(url, alert, headers={"X-Api-Key": api_key})
 
-        # Documented status codes
+        # Documented Rapid7 InsightConnect API status codes
         messages = {
             400: "Inactive Rapid7 InsightConnect workflow!",
             404: "Rapid7 InsightConnect workflow version not found!",
