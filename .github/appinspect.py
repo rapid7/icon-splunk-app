@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
     a = AppInspector.init_from_ci(username=username, password=password)
     a.authenticate()
-    request_id = a.submit_file(spl_path="../InsightConnect.spl")
+    request_id = a.submit_file(spl_path="InsightConnect.spl")
 
     while True:
         logger.info("Checking submission report status...")
