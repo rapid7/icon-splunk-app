@@ -1,6 +1,7 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import logging
+import sys
 import time
 import json
 
@@ -129,7 +130,9 @@ class AppInspector(object):
 
 
 if __name__ == "__main__":
-    a = AppInspector.init_from_ci(username="", password="")
+    username, password = sys.argv[1], sys.argv[2]
+
+    a = AppInspector.init_from_ci(username=username, password=password)
     a.authenticate()
     request_id = a.submit_file(spl_path="../InsightConnect.spl")
 
@@ -147,9 +150,4 @@ if __name__ == "__main__":
     if a.is_submission_good(json_report=jr):
         logger.info("Splunk AppInspect PASSED!")
     else:
-        logger.error("Splunk AppInspect FAILED!") 
-
-
-
-
-
+        logger.error("Splunk AppInspect FAILED!")
