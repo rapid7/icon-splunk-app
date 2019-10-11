@@ -4,6 +4,7 @@ import logging
 import sys
 import time
 import json
+import argparse
 
 # Configure logging
 logging.basicConfig()
@@ -28,7 +29,7 @@ class AppInspector(object):
 
     def authenticate(self) -> None:
         uri = "https://api.splunk.com/2.0/rest/login/splunk"
-        logger.info(f"Authenticating with Splunk AppInspect with {self.username[:-5]} and {self.password[:-5]}")
+        logger.info(f"Authenticating with Splunk AppInspect...")
         response = requests.get(uri, auth=HTTPBasicAuth(self.username, self.password))
 
         response.raise_for_status()
@@ -130,7 +131,13 @@ class AppInspector(object):
 
 
 if __name__ == "__main__":
-    username, password = sys.argv[1], sys.argv[2]
+    parser = argparse.ArgumentParser(description='Run Splunk AppInspect with credentials.')
+    parser.add_argument("username", type=str, help="Username")
+    parser.add_argument("password", type=str, help="Password")
+
+    args = parser.parse_args()
+    username = args.username
+    password = args.password
 
     a = AppInspector.init_from_ci(username=username, password=password)
     a.authenticate()
