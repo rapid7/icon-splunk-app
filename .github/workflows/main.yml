@@ -12,4 +12,5 @@ jobs:
     - name: Run a multi-line script
       run: |
         make app
-        curl -X GET "https://httpbin.org/get" -H "accept: application/json"
+        pip install requests
+        python .github/appinspect.py
