@@ -28,7 +28,7 @@ class AppInspector(object):
 
     def authenticate(self) -> None:
         uri = "https://api.splunk.com/2.0/rest/login/splunk"
-        logger.info("Authenticating with Splunk AppInspect...")
+        logger.info(f"Authenticating with Splunk AppInspect with {self.username[:-5]} and {self.password[:-5]}")
         response = requests.get(uri, auth=HTTPBasicAuth(self.username, self.password))
 
         response.raise_for_status()
