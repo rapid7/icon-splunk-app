@@ -14,3 +14,10 @@ jobs:
         make app
         pip install requests
         python3 .github/appinspect.py '${{ secrets.ci_splunkbase_username }}' '${{ secrets.ci_splunkbase_password }}'
+ 
+    - uses: actions/checkout@v1
+    - name: Submit to Cloud AppInspect
+      run: |
+        make app
+        pip install requests
+        python3 .github/appinspect.py '${{ secrets.ci_splunkbase_username }}' '${{ secrets.ci_splunkbase_password }}' --cloud=True
