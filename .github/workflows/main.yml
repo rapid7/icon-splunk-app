@@ -13,4 +13,4 @@ jobs:
       run: |
         make app
         pip install requests
-        python .github/appinspect.py
+        python3 .github/appinspect.py
