@@ -2,6 +2,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 import logging
 import time
+import json
 
 # Configure logging
 logging.basicConfig()
@@ -24,7 +25,7 @@ class AppInspector(object):
             password=password
         )
 
-    def authenticate(self) -> requests.Session:
+    def authenticate(self) -> None:
         uri = "https://api.splunk.com/2.0/rest/login/splunk"
         logger.info("Authenticating with Splunk AppInspect...")
         response = requests.get(uri, auth=HTTPBasicAuth(self.username, self.password))
@@ -68,7 +69,7 @@ class AppInspector(object):
         logger.info("Checking if submission report is ready...")
         response = self.session.get(uri)
 
-        if response.status_code == 404:
+        if response.status_code == 404 or response.json()["status"] in ["PREPARING", "PROCESSING"]:
             return False
         elif response.status_code == 200:
             return True
@@ -105,40 +106,50 @@ class AppInspector(object):
         if failures == 0:
             return True
         else:
-            logger.error(f"APPINSPECT FAILED! See report: \n{json_report}")
+            logger.error(f"APPINSPECT FAILED! Failures: {self._get_submission_failures(json_report=json_report)}")
             return False
 
+    def _get_submission_failures(self, json_report: dict) -> str:
+        """
+        Gets a list of all failures from the Splunk AppInspect report
+        :param json_report: JSON report
+        :return: JSON string of failed AppInspect checks
+        """
 
-# if __name__ == "__main__":
-#     if not (len(sys.argv) > 1 and sys.argv[1] == "--execute"):
-#         raise Exception("Unsupported execution mode (expected --execute flag)")
-#
-#     try:
-#         modular_alert = SendToInsightConnectAlert.from_cli()
-#         modular_alert.run()
-#         sys.exit(0)
-#     except Exception as e:
-#         raise Exception("An error occurred while running the alert. Information about the error: %s" % str(e))
+        failed = []
+        reports = json_report["reports"]
 
-a = AppInspector.init_from_ci(username="mrinehartr7", password="Ajfy^jwjg8fnBB%#$*Tb")
-a.authenticate()
-request_id = a.submit_file(spl_path="../InsightConnect.spl")
+        for report in reports:
+            for group in report["groups"]:
+                for check in group["checks"]:
+                    if check["result"] == "failure":
+                        failed.append(check)
 
-while True:
-    logger.info("Checking submission report status...")
-    ready = a.is_submission_report_ready(request_id=request_id)
-    if ready:
-        logger.info("Submission report is ready!")
-        break
+        return json.dumps(failed, indent=4, sort_keys=True)
+
+
+if __name__ == "__main__":
+    a = AppInspector.init_from_ci(username="", password="")
+    a.authenticate()
+    request_id = a.submit_file(spl_path="../InsightConnect.spl")
+
+    while True:
+        logger.info("Checking submission report status...")
+        ready = a.is_submission_report_ready(request_id=request_id)
+        if ready:
+            logger.info("Submission report is ready!")
+            break
+        else:
+            logger.info("Submission report is not ready, sleeping for 5 seconds...")
+            time.sleep(5)
+
+    jr = a.get_submission_report(request_id=request_id)
+    if a.is_submission_good(json_report=jr):
+        logger.info("Splunk AppInspect PASSED!")
     else:
-        logger.info("Submission report is not ready, sleeping for 5 seconds...")
-        time.sleep(5)
+        logger.error("Splunk AppInspect FAILED!")
 
-jr = a.get_submission_report(request_id=request_id)
-if a.is_submission_good(json_report=jr):
-    logger.info("Splunk AppInspect PASSED!")
-else:
-    logger.error("Splunk AppInspect FAILED!")
+
 
 
 
