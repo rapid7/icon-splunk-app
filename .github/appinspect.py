@@ -147,7 +147,7 @@ if __name__ == "__main__":
     if a.is_submission_good(json_report=jr):
         logger.info("Splunk AppInspect PASSED!")
     else:
-        logger.error("Splunk AppInspect FAILED!")
+        logger.error("Splunk AppInspect FAILED!") 
 
 
 
