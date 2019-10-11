@@ -1,6 +1,8 @@
 
 # Rapid7 InsightConnect
 
+![](https://github.com/rapid7/icon-splunk-app/workflows/AppInspect/badge.svg)
+
 This Splunk app enables users of both Splunk and Rapid7 InsightConnect to trigger
 [Rapid7 InsightConnect](https://www.rapid7.com/products/insightconnect/) workflows
 by way of configurable alerts.
