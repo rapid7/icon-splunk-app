@@ -1,0 +1,23 @@
+name: AppInspect
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Submit to AppInspect
+      run: |
+        make app
+        pip install requests
+        python3 .github/appinspect.py '${{ secrets.ci_splunkbase_username }}' '${{ secrets.ci_splunkbase_password }}'
+ 
+    - uses: actions/checkout@v1
+    - name: Submit to Cloud AppInspect
+      run: |
+        make app
+        pip install requests
+        python3 .github/appinspect.py '${{ secrets.ci_splunkbase_username }}' '${{ secrets.ci_splunkbase_password }}' --cloud=True
