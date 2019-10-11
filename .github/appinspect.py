@@ -14,17 +14,19 @@ logger.setLevel(logging.INFO)
 
 class AppInspector(object):
 
-    def __init__(self, username: str, password: str):
+    def __init__(self, username: str, password: str, use_cloud: bool = False):
         self.username = username
         self.password = password
+        self.use_cloud = use_cloud
 
         self.session = None
 
     @classmethod
-    def init_from_ci(cls, username: str, password: str):
+    def init_from_ci(cls, username: str, password: str, use_cloud: bool = False):
         return cls(
             username=username,
-            password=password
+            password=password,
+            use_cloud=use_cloud
         )
 
     def authenticate(self) -> None:
@@ -52,8 +54,12 @@ class AppInspector(object):
 
         files = {"app_package": open(spl_path, "rb")}
 
-        logger.info(f"Submitting {spl_path} to Splunk AppInspect...")
-        response = self.session.post(uri, files=files)
+        if self.use_cloud:
+            logger.info(f"Submitting {spl_path} to Splunk Cloud AppInspect...")
+            response = self.session.post(uri, files=files, data={"included_tags": "cloud"})
+        else:
+            logger.info(f"Submitting {spl_path} to Splunk AppInspect...")
+            response = self.session.post(uri, files=files)
 
         response.raise_for_status()
 
@@ -134,12 +140,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run Splunk AppInspect with credentials.')
     parser.add_argument("username", type=str, help="Username")
     parser.add_argument("password", type=str, help="Password")
+    parser.add_argument("--cloud", type=bool)
 
     args = parser.parse_args()
     username = args.username
     password = args.password
+    use_cloud = args.cloud
 
-    a = AppInspector.init_from_ci(username=username, password=password)
+    if use_cloud:
+        a = AppInspector.init_from_ci(username=username, password=password, use_cloud=True)
+    else:
+        a = AppInspector.init_from_ci(username=username, password=password)
     a.authenticate()
     request_id = a.submit_file(spl_path="InsightConnect.spl")
 
