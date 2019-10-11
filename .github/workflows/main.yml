@@ -9,11 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - with: 
-            username: ${{ secrets.ci_splunkbase_username }}
-            password: ${{ secrets.ci_splunkbase_password }}
     - name: Run a multi-line script
       run: |
         make app
         pip install requests
-        python3 .github/appinspect.py
+        python3 .github/appinspect.py ${{ secrets.ci_splunkbase_username }} ${{ secrets.ci_splunkbase_password }}
