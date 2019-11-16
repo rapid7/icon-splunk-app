@@ -1,7 +1,7 @@
 # Description
 
 The Rapid7 InsightConnect App for Splunk enables users of both Splunk and Rapid7 InsightConnect to forward events from
-their Splunk instances to Rapid7 InsightConnect workflows.
+their Splunk instances to Rapid7 InsightConnect to trigger workflows.
 
 # Key Features
 
@@ -34,7 +34,7 @@ found [here](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconne
 Rapid7 welcomes contributions to the InsightConnect App for Splunk and has designated its repository as open source.
 The source code for the repository is licensed with the MIT License.
 
-## Troubleshooting
+### Troubleshooting
 
 * Ensure all required InsightConnect workflows are active.
 * Ensure your Insight API key is valid and not misspelled
