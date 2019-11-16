@@ -1,0 +1,19 @@
+extension: workflow
+product: [insightconnect]
+name: icon_splunk_app
+title: Rapid7 InsightConnect App for Splunk
+description: "The Rapid7 InsightConnect App for Splunk allows users to forward events from their Splunk instance to
+Rapid7 InsightConnect"
+version: 1.0.1
+vendor: rapid7
+status: []
+support: rapid7
+hub_tags:
+  use_cases: [alert_enrichment, soar]
+  keywords: [splunk, insightconnect, event forwarding]
+  features: []
+resources:
+  source_url: https://github.com/rapid7/icon-splunk-app
+  license_url: https://github.com/rapid7/icon-splunk-app/blob/master/LICENSE
+  vendor_url: htps://www.rapid7.com
+  external_url: https://splunkbase.splunk.com/app/4673/
