@@ -13,19 +13,22 @@ license are required for use of this Splunk app.
 A Rapid7 Insight cloud platform API key can be obtained
 [here](https://insight.rapid7.com/platform#/apiKeyManagement).
 
-For more in-depth instructions on configuring this app to work with Rapid7 InsightConnect, please see [https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
+For more in-depth instructions on configuring this app to work with Rapid7 InsightConnect, 
+please see [https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
-**Notice:** By using this Splunk app, you consent to sending information (events) to Rapid7's platform for InsightConnect.
+**Notice:** By using this Splunk app, you consent to sending information (events) to
+Rapid7's platform for InsightConnect.
 
 For questions or comments regarding this Splunk app, please contact
 IntegrationAlliance@rapid7.com.
 
 Source code (contributions welcome!): [rapid7/icon-splunk-app](https://github.com/rapid7/icon-splunk-app)
 
-### Changelog
+## Changelog
 
-* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | 
+* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario |
 Add validation around Rapid7 InsightConnect workflow trigger URL
+
 * 1.0.0 - Initial release.
 
 ## About Rapid7
