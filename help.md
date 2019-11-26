@@ -1,7 +1,7 @@
 # Description
 
 The Rapid7 InsightConnect App for Splunk enables users of both Splunk and Rapid7 InsightConnect to forward events from
-their Splunk instances to Rapid7 InsightConnect to trigger workflows. 
+their Splunk instances to Rapid7 InsightConnect to trigger workflows.
 
 # Key Features
 
@@ -19,7 +19,7 @@ their Splunk instances to Rapid7 InsightConnect to trigger workflows.
 
 ### Connection
 
-Directions for configuring the Rapid7 InsightConnect App for Splunk can be 
+Directions for configuring the Rapid7 InsightConnect App for Splunk can be
 found [here](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
 ## Technical Details
