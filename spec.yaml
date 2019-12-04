@@ -1,4 +1,4 @@
-extension: standalone
+extension: integration
 product: [insightconnect]
 name: icon_splunk_app
 title: Rapid7 InsightConnect App for Splunk
