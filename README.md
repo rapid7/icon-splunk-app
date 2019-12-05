@@ -1,4 +1,3 @@
-
 # Rapid7 InsightConnect
 
 ![](https://github.com/rapid7/icon-splunk-app/workflows/AppInspect/badge.svg)
@@ -22,10 +21,9 @@ IntegrationAlliance@rapid7.com.
 
 Source code (contributions welcome!): [rapid7/icon-splunk-app](https://github.com/rapid7/icon-splunk-app)
 
-### Changelog
+## Changelog
 
-* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | 
-Add validation around Rapid7 InsightConnect workflow trigger URL
+* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 * 1.0.0 - Initial release.
 
 ## About Rapid7
