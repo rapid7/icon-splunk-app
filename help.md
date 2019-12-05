@@ -19,14 +19,14 @@ their Splunk instances to Rapid7 InsightConnect to trigger workflows.
 
 ### Connection
 
-Directions for configuring the Rapid7 InsightConnect App for Splunk can be 
+Directions for configuring the Rapid7 InsightConnect App for Splunk can be
 found [here](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
 ## Technical Details
 
 ### Configuration
 
-Directions for configuring the Rapid7 InsightConnect App for Splunk can be 
+Directions for configuring the Rapid7 InsightConnect App for Splunk can be
 found [here](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
 ### Contributing
@@ -41,8 +41,7 @@ The source code for the repository is licensed with the MIT License.
 
 # Version History
 
-* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | 
-Add validation around Rapid7 InsightConnect workflow trigger URL
+* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 * 1.0.0 - Initial integration
 
 # Links
