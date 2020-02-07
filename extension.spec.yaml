@@ -1,5 +1,5 @@
 extension: integration_listing
-product: [insightconnect]
+products: [insightconnect]
 name: icon_splunk_app
 title: Rapid7 InsightConnect App for Splunk
 description: "The Rapid7 InsightConnect App for Splunk allows users to forward events from their Splunk instance to
