@@ -15,5 +15,5 @@ hub_tags:
 resources:
   source_url: https://github.com/rapid7/icon-splunk-app
   license_url: https://github.com/rapid7/icon-splunk-app/blob/master/LICENSE
-  vendor_url: htps://www.rapid7.com
+  vendor_url: https://www.rapid7.com
   external_url: https://splunkbase.splunk.com/app/4673/
