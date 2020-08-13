@@ -85,7 +85,7 @@ class AppInspector(object):
         response = self.session.get(uri)
 
         status = response.json().get("status")
-        if response.status_code == 404 or status in ["PREPARING", "PROCESSING"]:
+        if response.status_code == 404 or status in ["PENDING", "PREPARING", "PROCESSING"]:
             try:
                 return False, status
             except JSONDecodeError:
