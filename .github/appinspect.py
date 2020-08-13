@@ -5,6 +5,8 @@ import sys
 import time
 import json
 import argparse
+from typing import Optional
+from json import JSONDecodeError
 
 # Configure logging
 logging.basicConfig()
@@ -67,30 +69,34 @@ class AppInspector(object):
 
         return response.json()["request_id"]
 
-    def is_submission_report_ready(self, request_id: str) -> bool:
+    def is_submission_report_ready(self, request_id: str) -> (bool, Optional[str]):
         """
         Checks if a Splunk AppInspect submission report is ready
         :return: True if it is ready, false otherwise
         """
 
-        def _handle_error():
-            logger.info("An unhandled error occurred while retrieving the submission report status!")
+        def _handle_error(error: str):
+            logger.info(f"An unhandled error occurred while retrieving the submission report status! "
+                        f"Response text: {error}")
             response.raise_for_status()
 
         uri = f"https://appinspect.splunk.com/v1/app/validate/status/{request_id}"
         logger.info("Checking if submission report is ready...")
         response = self.session.get(uri)
-        logger.info(f"Received response from AppInspect: {response.text}")
 
-        if response.status_code == 404 or response.json()["status"] in ["PREPARING", "PROCESSING"]:
-            return False
+        status = response.json().get("status")
+        if response.status_code == 404 or status in ["PREPARING", "PROCESSING"]:
+            try:
+                return False, status
+            except JSONDecodeError:
+                return False, None
         elif response.status_code == 200:
-            if response.json()["status"] == "SUCCESS":
-                return True
-            elif response.json()["status"] == "ERROR":
-                _handle_error()
+            if status == "SUCCESS":
+                return True, status
+            elif status == "ERROR":
+                _handle_error(error=response.text)
         else:
-            _handle_error()
+            _handle_error(error=response.text)
 
     def get_submission_report(self, request_id: str) -> dict:
         """
@@ -163,12 +169,12 @@ if __name__ == "__main__":
 
     while True:
         logger.info("Checking submission report status...")
-        ready = a.is_submission_report_ready(request_id=request_id)
+        ready, status = a.is_submission_report_ready(request_id=request_id)
         if ready:
             logger.info("Submission report is ready!")
             break
         else:
-            logger.info("Submission report is not ready, sleeping for 5 seconds...")
+            logger.info(f"Submission report status is {status}, sleeping for 5 seconds...")
             time.sleep(5)
 
     jr = a.get_submission_report(request_id=request_id)
