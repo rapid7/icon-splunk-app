@@ -80,6 +80,7 @@ class AppInspector(object):
         uri = f"https://appinspect.splunk.com/v1/app/validate/status/{request_id}"
         logger.info("Checking if submission report is ready...")
         response = self.session.get(uri)
+        logger.info(f"Received response from AppInspect: {response.text}")
 
         if response.status_code == 404 or response.json()["status"] in ["PREPARING", "PROCESSING"]:
             return False
