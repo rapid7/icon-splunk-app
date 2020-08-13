@@ -73,6 +73,10 @@ class AppInspector(object):
         :return: True if it is ready, false otherwise
         """
 
+        def _handle_error():
+            logger.info("An unhandled error occurred while retrieving the submission report status!")
+            response.raise_for_status()
+
         uri = f"https://appinspect.splunk.com/v1/app/validate/status/{request_id}"
         logger.info("Checking if submission report is ready...")
         response = self.session.get(uri)
@@ -80,10 +84,12 @@ class AppInspector(object):
         if response.status_code == 404 or response.json()["status"] in ["PREPARING", "PROCESSING"]:
             return False
         elif response.status_code == 200:
-            return True
+            if response.json()["status"] == "SUCCESS":
+                return True
+            elif response.json()["status"] == "ERROR":
+                _handle_error()
         else:
-            logger.info("An unhandled error occurred while retrieving the submission report status!")
-            response.raise_for_status()
+            _handle_error()
 
     def get_submission_report(self, request_id: str) -> dict:
         """
