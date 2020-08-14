@@ -34,10 +34,21 @@ found [here](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconne
 Rapid7 welcomes contributions to the InsightConnect App for Splunk and has designated its repository as open source.
 The source code for the repository is licensed with the MIT License.
 
+#### Testing
+
+The easiest way to test the app within Splunk is the following:
+
+1. Compile the app package with `make app`.
+
+2. Install the app within Splunk.
+
+3. Use the following search query to manually trigger the alert, replacing the placeholders within `<>` as needed:
+`index="*" | head 2 | sendalert send_to_insightconnect param.trigger_url="https://us.api.insight.rapid7.com/connect/v1/workflows/<workflow ID>/events/execute" param.x-api-key="<API key>"`
+
 ### Troubleshooting
 
 * Ensure all required InsightConnect workflows are active.
-* Ensure your Insight API key is valid and not misspelled
+* Ensure your Insight API key is valid and not misspelled.
 
 # Version History
 
