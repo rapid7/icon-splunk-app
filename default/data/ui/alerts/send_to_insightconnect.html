@@ -1,27 +1,11 @@
 <form class="form-horizontal form-complex">
-    <div class="control-group">
-        <label class="control-label" for="send_to_insightconnect_trigger_url">Trigger URL</label>
-
-         <div class="controls">
-            <input type="text"
-                   name="action.send_to_insightconnect.param.trigger_url"
-                   id="send_to_insightconnect_trigger_url"
-                   placeholder="https://us.api.insight.rapid7.com/connect/v1/workflows/<IDENTIFIER HERE>/events/execute"
-            />
-            <span class="help-block">Workflow API trigger URL to receive the Splunk alert.</span>
-        </div>
+<div class="control-group">
+	<label class="control-label" for="send_to_insightconnect_workflow_trigger_url">Workflow Trigger URL <span class="required">*</span> </label>
+    <div class="controls">
+	<input type="text" name="action.send_to_insightconnect.param.workflow_trigger_url" id="send_to_insightconnect_workflow_trigger_url"/>
+                <span class="help-block"> 
+                    Workflow API trigger URL to receive the Splunk alert.
+                </span>
     </div>
-
-    <div class="control-group">
-        <label class="control-label" for="send_to_insightconnect_x-api-key">X-API-Key</label>
-
-         <div class="controls">
-            <input type="text"
-                   name="action.send_to_insightconnect.param.x-api-key"
-                   id="send_to_insightconnect_x-api-key"
-                   placeholder="X-API-Key"
-            />
-            <span class="help-block">Rapid7 Insight platform API key. These can be created at https://insight.rapid7.com/platform#/apiKeyManagement.</span>
-        </div>
-    </div>
+</div>
 </form>
