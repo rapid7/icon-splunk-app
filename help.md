@@ -41,6 +41,7 @@ The source code for the repository is licensed with the MIT License.
 
 # Version History
 
+* 2.0.0 - Update for Splunk Cloud
 * 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 * 1.0.0 - Initial integration
 
