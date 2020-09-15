@@ -12,9 +12,11 @@ license are required for use of this Splunk app.
 A Rapid7 Insight cloud platform API key can be obtained
 [here](https://insight.rapid7.com/platform#/apiKeyManagement).
 
-For more in-depth instructions on configuring this app to work with Rapid7 InsightConnect, please see [https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
+For more in-depth instructions on configuring this app to work with Rapid7 InsightConnect,
+please see [https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk](https://insightconnect.help.rapid7.com/docs/set-up-the-insightconnect-app-for-splunk).
 
-**Notice:** By using this Splunk app, you consent to sending information (events) to Rapid7's platform for InsightConnect.
+**Notice:** By using this Splunk app, you consent to sending information (events) to
+Rapid7's platform for InsightConnect.
 
 For questions or comments regarding this Splunk app, please contact
 IntegrationAlliance@rapid7.com.
