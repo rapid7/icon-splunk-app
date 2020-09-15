@@ -1,3 +1,5 @@
+
 [send_to_insightconnect]
-param.trigger_url = <string> Rapid7 InsightConnect workflow trigger URL.
-param.x-api-key = <string> X-API-Key, obtainable from https://insight.rapid7.com/platform#/apiKeyManagement.
+python.version = python3
+param.workflow_trigger_url = <string> Workflow Trigger URL. It's a required parameter. It's default value is https://<REGION>.api.insight.rapid7.com/connect/v1/workflows/<IDENTIFIER>/events/execute.
+

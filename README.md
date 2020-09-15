@@ -25,11 +25,8 @@ Source code (contributions welcome!): [rapid7/icon-splunk-app](https://github.co
 
 ## Changelog
 
-* 1.0.2 - Update `alert_actions.conf` to add support for Splunk 8
-
-* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario |
-Add validation around Rapid7 InsightConnect workflow trigger URL
-
+* 2.0.0 - Update for Splunk Cloud
+* 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 * 1.0.0 - Initial release.
 
 ## About Rapid7

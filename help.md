@@ -52,8 +52,7 @@ The easiest way to test the app within Splunk is the following:
 
 # Version History
 
-* 1.0.2 - Update `alert_actions.conf` to add support for Splunk 8
-
+* 2.0.0 - Update for Splunk Cloud
 * 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 
 * 1.0.0 - Initial integration
