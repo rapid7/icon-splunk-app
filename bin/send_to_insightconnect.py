@@ -1,13 +1,13 @@
 
 # encoding = utf-8
 # Always put this line at the beginning of this file
-import ta_rapid7_insightconnect_declare
 
 import os
 import sys
 
-from alert_actions_base import ModularAlertBase
-import modalert_send_to_insightconnect_helper
+from .ta_rapid7_insightconnect.alert_actions_base import ModularAlertBase
+from .ta_rapid7_insightconnect import modalert_send_to_insightconnect_helper
+
 
 class AlertActionWorkersend_to_insightconnect(ModularAlertBase):
 
