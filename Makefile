@@ -11,3 +11,6 @@ importable:
 # Run a local Splunk Enterprise server container for app testing/Add-on Builder development/packaging
 container:
 	docker run -it -p 8000:8000 -e "SPLUNK_PASSWORD=password" -e "SPLUNK_START_ARGS=--accept-license" splunk/splunk:latest
+
+container804:
+	docker run -it -p 8000:8000 -e "SPLUNK_PASSWORD=password" -e "SPLUNK_START_ARGS=--accept-license" splunk/splunk:8.0.4.1-debian
