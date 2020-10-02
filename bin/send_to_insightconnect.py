@@ -1,7 +1,7 @@
 
 # encoding = utf-8
 # Always put this line at the beginning of this file
-import ta_rapid7_insightconnect_declare
+import rapid7_insightconnect_declare
 
 import os
 import sys
@@ -45,5 +45,5 @@ class AlertActionWorkersend_to_insightconnect(ModularAlertBase):
         return status
 
 if __name__ == "__main__":
-    exitcode = AlertActionWorkersend_to_insightconnect("TA-rapid7-insightconnect", "send_to_insightconnect").run(sys.argv)
+    exitcode = AlertActionWorkersend_to_insightconnect("rapid7-insightconnect", "send_to_insightconnect").run(sys.argv)
     sys.exit(exitcode)

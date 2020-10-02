@@ -1,33 +1,4 @@
 [props/source%3A%3A...send_to_insightconnect_modalert.log%2A]
 owner = admin
-version = 8.0.5
-modtime = 1598898254.361788000
-
-[passwords/credential%3A__REST_CREDENTIAL__%23TA-rapid7-insightconnect%23configs%2Fconf-ta_rapid7_insightconnect_settings%3Aadditional_parameters%60%60splunk_cred_sep%60%601%3A]
-owner = admin
-version = 8.0.5
-modtime = 1598903705.715287000
-
-[passwords/credential%3A__REST_CREDENTIAL__%23TA-rapid7-insightconnect%23configs%2Fconf-ta_rapid7_insightconnect_settings%3Aadditional_parameters%60%60splunk_cred_sep%60%602%3A]
-owner = admin
-version = 8.0.5
-modtime = 1598903705.736504000
-
-[ta_rapid7_insightconnect_settings/additional_parameters]
-version = 8.0.5
-modtime = 1598903705.743168000
-
-[passwords/credential%3A__REST_CREDENTIAL__%23TA-rapid7-insightconnect%23configs%2Fconf-ta_rapid7_insightconnect_account%3ASplunkbase%60%60splunk_cred_sep%60%601%3A]
-owner = admin
-version = 8.0.5
-modtime = 1598903685.347991000
-
-[passwords/credential%3A__REST_CREDENTIAL__%23TA-rapid7-insightconnect%23configs%2Fconf-ta_rapid7_insightconnect_account%3ASplunkbase%60%60splunk_cred_sep%60%602%3A]
-owner = admin
-version = 8.0.5
-modtime = 1598903685.356748000
-
-[ta_rapid7_insightconnect_account/Splunkbase]
-owner = admin
-version = 8.0.5
-modtime = 1598903685.364914000
+version = 8.0.5.1
+modtime = 1601671996.581037000

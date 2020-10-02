@@ -1,8 +1,8 @@
 {
     "meta": {
-        "name": "rapid7_insightconnect",
-        "displayName": "Rapid7 InsightConnect",
-        "version": "1.0.0",
+        "name": "rapid7-insightconnect",
+        "displayName": "Rapid7 InsightConnect App for Splunk",
+        "version": "2.0.1",
         "apiVersion": "3.0.0",
         "restRoot": "rapid7_insightconnect"
     },
@@ -94,9 +94,9 @@
                     "entity": [
                         {
                             "field": "rapid7_insight_api_key",
-                            "label": "Rapid7 Insight API Key",
+                            "label": "API Key",
                             "type": "text",
-                            "help": "Rapid7 Insight platform API key. These can be created at https://insight.rapid7.com/platform#/apiKeyManagement.",
+                            "help": "",
                             "required": true,
                             "defaultValue": "",
                             "encrypted": true,
