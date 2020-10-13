@@ -1,11 +1,21 @@
 VERSION?=$(shell grep 'version: ' extension.spec.yaml | sed 's/version: //')
 
 # Package Splunk app source for import into the Splunk Add-on Builder
-importable:
+importable: clean
 	rm -rf rapid7-insightconnect
 	mkdir rapid7-insightconnect
 	cp -r appserver bin default local metadata README static app.manifest rapid7-insightconnect.aob_meta README.txt rapid7-insightconnect/
 	tar -zcv rapid7-insightconnect > r7_icon_app_aob_importable_$(VERSION).tgz
+	rm -rf rapid7-insightconnect
+
+clean:
+	rm -rf *.spl *.tgz
+
+app: clean
+	rm -rf rapid7-insightconnect
+	mkdir rapid7-insightconnect
+	cp -r bin default local app.manifest metadata README README.txt static appserver rapid7-insightconnect/
+	gtar -zcv rapid7-insightconnect > rapid7-insightconnect-$(VERSION).spl
 	rm -rf rapid7-insightconnect
 
 # Run a local Splunk Enterprise server container for app testing/Add-on Builder development/packaging

@@ -3,6 +3,8 @@ from builtins import str
 import csv
 import gzip
 import sys
+import os
+
 
 try:
     from splunk.clilib.bundle_paths import make_splunkhome_path
@@ -180,8 +182,10 @@ class ModularAlertBase(ModularAction):
     def get_events(self):
         try:
             try:
+                self.check_and_create_gzip()
                 self.result_handle = gzip.open(self.results_file, 'rt')
             except ValueError: # Workaround for Python 2.7 on Windows
+                self.check_and_create_gzip()
                 self.result_handle = gzip.open(self.results_file, 'r')
             return (self.pre_handle(num, result) for num, result in enumerate(csv.DictReader(self.result_handle)))
         except IOError:
@@ -192,8 +196,10 @@ class ModularAlertBase(ModularAction):
     def prepare_meta_for_cam(self):
         try:
             try:
+                self.check_and_create_gzip()
                 rf = gzip.open(self.results_file, 'rt')
             except ValueError: # Workaround for Python 2.7 on Windows
+                self.check_and_create_gzip()
                 rf = gzip.open(self.results_file, 'r')
             for num, result in enumerate(csv.DictReader(rf)):
                 result.setdefault('rid', str(num))
@@ -203,6 +209,33 @@ class ModularAlertBase(ModularAction):
         finally:
             if rf:
                 rf.close()
+
+    def check_and_create_gzip(self):
+        """
+        Check for existence of result file before accessing.
+        If non-existent, create one to prevent exceptions.
+        """
+        self.log_info("Info: Checking for existence of results file: {}".format(self.results_file))
+        if os.path.exists(self.results_file):
+            self.log_info("Info: Results file existed, skipping creation.")
+            return
+
+        paths = os.path.split(self.results_file)
+        try:
+            parent_dirs = paths[0]
+        except IndexError as e:
+            self.log_error("Error: Unable to determine results file to check! Results file path was {}".format(e))
+            sys.exit(2)
+
+        # Create the parent directories if they don't exist
+        try:
+            os.makedirs(parent_dirs, True)
+
+        except FileExistsError as e:
+            self.log_warn("Warning: File already exists. Exception: {}".format(e))
+
+        with gzip.open(self.results_file, "wt") as f:
+            f.write("")
 
     def run(self, argv):
         status = 0
