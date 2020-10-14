@@ -4,7 +4,7 @@ name: icon_splunk_app
 title: Rapid7 InsightConnect App for Splunk
 description: "The Rapid7 InsightConnect App for Splunk allows users to forward events from their Splunk instance to
 Rapid7 InsightConnect"
-version: 2.0.0
+version: 2.0.1
 vendor: rapid7
 status: []
 support: rapid7

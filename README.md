@@ -25,6 +25,7 @@ Source code (contributions welcome!): [rapid7/icon-splunk-app](https://github.co
 
 ## Changelog
 
+* 2.0.1 - Patch add-on builder code to fix potential FileNotFoundError
 * 2.0.0 - Update for Splunk Cloud
 * 1.0.1 - Add MIT license | Remove statement that could potentially log credentials in an error scenario | Add validation around Rapid7 InsightConnect workflow trigger URL
 * 1.0.0 - Initial release.
