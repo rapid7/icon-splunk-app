@@ -88,7 +88,10 @@ class SendToInsightConnectAlert:
 
         # Regex pattern, matches something like:
         # https://us.api.insight.rapid7.com/connect/v1/workflows/16b3-z81b-40b7-afc2-zf53127d3758/events/execute
-        rp = r"https:\/\/.{2}\.api\.insight\.rapid7\.com\/connect\/v\d{1}\/workflows\/[a-zA-Z0-9\-]*\/events\/execute"
+        # OR, the new style async URL:
+        # https://us.api.insight.rapid7.com/connect/v1/execute/async/workflows/c3b886da-b345-7abe-cda3-c96173c93de1
+        rp = r"https:\/\/.{2}\.api\.insight\.rapid7\.com\/connect\/v\d{1}\/workflows\/[a-zA-Z0-9\-]*\/events\/execute" \
+             r"|https:\/\/.{2}\.api\.insight\.rapid7\.com\/connect\/v\d{1}\/execute\/async\/workflows\/[a-zA-Z0-9\-]*"
         matches = re.match(rp, trigger_url)
 
         if matches:
