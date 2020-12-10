@@ -113,7 +113,7 @@ class SendToInsightConnectAlert:
         response = requests.post(url, alert, headers={"X-Api-Key": api_key})
 
         # Documented Rapid7 InsightConnect API status codes
-        if response.status_code != 200:
+        if response.status_code not in [200, 202]:
             s = "An error occurred! Response was: %s" % response.text
             self.helper.log_error(s)
             raise Exception(s)
