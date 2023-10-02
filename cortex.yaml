@@ -1,0 +1,15 @@
+---
+info:
+  title: Icon Splunk App
+  description: Splunk App for InsightConnect
+  x-cortex-git:
+    github:
+      alias: r7org
+      repository: rapid7/icon-splunk-app
+  x-cortex-tag: icon-splunk-app
+  x-cortex-type: service
+  x-cortex-domain-parents:
+  - tag: insightconnect
+openapi: 3.0.1
+servers:
+- url: "/"
