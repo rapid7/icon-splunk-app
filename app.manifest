@@ -4,8 +4,8 @@
     "title": "Rapid7 InsightConnect App for Splunk",
     "id": {
       "group": null,
-      "name": "rapid7_insightconnect",
-      "version": "2.0.0"
+      "name": "rapid7-insightconnect",
+      "version": "2.0.1"
     },
     "author": [
       {
